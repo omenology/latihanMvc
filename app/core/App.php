@@ -28,7 +28,6 @@ class App {
 		}
 
 		call_user_func_array([$this->controller,$this->methode], $this->params);
-
 	}
 
 	public function parseURL(){
