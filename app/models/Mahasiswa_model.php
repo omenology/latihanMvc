@@ -41,4 +41,28 @@ Class Mahasiswa_model{
 
 		return $this->db->rowCount();
 	}
+
+	public function updateDataMahasiswa($data){
+		$query = "UPDATE $this->tabel SET nama = :nama, email = :email, jurusan = :jurusan WHERE npm = :npm";
+		$this->db->query($query);
+		$this->db->bind('npm',$data['npm']);
+		$this->db->bind('nama',$data['nama']);
+		$this->db->bind('email',$data['email']);
+		$this->db->bind('jurusan',$data['jurusan']);
+		
+		$this->db->execute();
+
+		return $this->db->rowCount();
+	}
+
+	public function getCariMhs($data){
+		$query = "SELECT * FROM $this->tabel WHERE nama LIKE :nama";
+		$this->db->query($query);
+		$this->db->bind('nama',"%$data%");
+
+		$this->db->execute();
+
+		return $this->db->resultSet();
+
+	}
 }
